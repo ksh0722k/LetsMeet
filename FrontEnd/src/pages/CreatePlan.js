@@ -63,21 +63,20 @@ export default class CreatePlan extends React.PureComponent {
     console.log(this.state);
     
     const headers = {
-      'Access-Control-Allow-Origin': '*',        
-      'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Access-Control-Allow-Origin': '*',      
+      'Content-Type': 'aapplication/json'
     }
 
-    const data = {
-      "planName": this.planName,
-      "start": this.start,
-      "end": this.end,
-      "gap": this.gap,
-      "dates": this.dates
+    const datas = {
+      title: this.state.planName,
+      start: this.state.start,
+      end: this.state.end,
+      gap: this.state.gap,
+      dates: this.state.dates
     }
 
     axios
-      .post('https://letsmeeet.azurewebsites.net/meet', data, headers, { withCredentials: true })
+      .post('https://letsmeeet.azurewebsites.net/api/meet', datas, headers, { withCredentials: true })
       .then(function (response) {
         console.log(response);
       })
@@ -199,10 +198,6 @@ export default class CreatePlan extends React.PureComponent {
               </Grid>
               {/* 일정생성 버튼 */}
               <Grid className="create-plan">
-                {/* 소정님, a태그 사용하면 submit 처리가 안돼서 button 사용할게요!
-                <a href="#" className="create-plan-text" type="submit">
-                  일정 생성하기
-                </a>*/}
                 <Button type="submit" className="create-plan-btn">
                   일정 생성하기
                 </Button>
